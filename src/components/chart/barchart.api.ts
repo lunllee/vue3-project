@@ -10,7 +10,7 @@ export default class BarChartAPIService {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: "http://192.168.2.105:20000/chart"
+      baseURL: "http://192.168.0.1:20000/chart"
     });
   }
 

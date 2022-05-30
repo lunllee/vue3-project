@@ -10,7 +10,7 @@ export default class PvsnListAPIService {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: "http://192.168.2.105:20000/log"
+      baseURL: "http://192.168.0.1:20000/log"
     });
   }
 

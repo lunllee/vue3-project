@@ -82,7 +82,7 @@ export default class DataProcessAPIService {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: "http://192.168.2.105:20000"
+      baseURL: "http://192.168.0.1:20000"
     });
   }
 
