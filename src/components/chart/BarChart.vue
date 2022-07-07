@@ -5,7 +5,7 @@ import DropDownVue from "@/components/dropdown/Dropdown.vue";
 import { barChartAPI } from '@/components/chart/barchart.api';
 import { useBarChartStore } from '@/stores/barChart';
 import { useDropDownStore } from '@/stores/dropdownSelecter';
-import TodayTimer from "@/components/timer/TodayTimer.vue"
+import TodayTimer from "@/components/timer/TodayTimer.vue";
 const barchartStore = useBarChartStore();
 const dropdown = useDropDownStore();
 barchartStore.setMenuIndex(1);
@@ -16,7 +16,6 @@ const { selectMenuIndex } = storeToRefs(barchartStore);
 <script>
 import { watch, watchEffect } from "vue";
 import { useDropDownStore } from '@/stores/dropdownSelecter';
-import axios from "axios";
 const todayArr = getToday();
 
 async function getHourData(ymd, pvsn_cd) {
@@ -227,11 +226,13 @@ export default {
             {{ mt }}
           </span>
         </li>
+         
       </div>
-     <div class="today-time">
-      <TodayTimer />
+      <div class="right-side">
+          <TodayTimer />
+          <DropDownVue @selectBtn="selectBtn"/>
       </div>
-      <DropDownVue @selectBtn="selectBtn"/>
+      
     </nav>
     <apexchart
       ref="barchart"
@@ -256,7 +257,8 @@ export default {
   .container-fluid {
     padding: 0.5rem 2rem;
     display: flex;
-    width: 50%;
+    //width: 50%;
+   
 
     li {
       list-style: none;
@@ -274,5 +276,14 @@ export default {
       }
     }
   }
+
+  .today-time{
+        padding: 0.5rem 0;
+  }
+}
+
+.right-side{
+  display:flex;
+  margin-left:auto;
 }
 </style>
