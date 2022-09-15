@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import TodayTimer from "@/components/timer/TodayTimer.vue"
+import { ref, watch, computed } from "vue";
+//import TodayTimer from "@/components/timer/TodayTimer.vue"
 import { useDataProcessStore } from '@/stores/dataProcess';
 const dataprocess = useDataProcessStore(); 
 const date = ref();
@@ -12,10 +12,22 @@ watch (date, () => {
   const pickDay = pickDate.getDate() >= 10 ? pickDate.getDate() : `0${pickDate.getDate()}`;
 
   dataprocess.setpickUpDate(`${pickYear}${pickMonth}${pickDay}`);
+  for(let i = 0; dataprocess.dayProcess.length > i;i++){
+    dataprocess.listOpen[i] = false;
+  }
 });
+
+function errorcntTotal(){
+  let errortotal = 0;
+  for(let i = 0; dataprocess.dayProcess.length > i;i++){
+    errortotal += dataprocess.dayProcess[i].error_cnt;
+  }
+ return errortotal
+}
 
 </script>
 <script lang="ts">
+
 export default {
   data() {
     return {
@@ -27,9 +39,10 @@ export default {
         }
       ],
     }
-  }
+  },
 }
 </script>
+
 <template>
   <div class="time-line-group">
     <div class="date-picker">
@@ -48,9 +61,12 @@ export default {
         </template>
       </v-date-picker>
     </div>
-    <div class="today-time">
+    <!-- <div class="today-time">
       <TodayTimer />
-    </div>
+    </div> -->
+    
+    <marquee class="errorcnt_mar">오류 총 <span>{{errorcntTotal()}}</span>건이 발생했습니다.</marquee>
+    
   </div>
 </template>
 <style>
@@ -99,6 +115,11 @@ export default {
         border-color: var(--time-picker-hover-color);
       }
     }
+  }
+
+  .errorcnt_mar{
+    color : red;
+    margin : 0px 10px;
   }
 }
 

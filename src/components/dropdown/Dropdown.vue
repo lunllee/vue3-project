@@ -38,6 +38,7 @@ export default defineComponent({
 </script>
 <template>
   <section class="dropdown-group">
+   
     <div 
       class="selected-item"
       @click="dropdown.toggleDropdown"
@@ -98,8 +99,8 @@ export default defineComponent({
 .dropdown-group {
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  max-width: 350px;
+  margin-left: 10px;
+  
 
   .selected-item {
     height: 40px;
